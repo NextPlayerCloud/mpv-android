@@ -1,8 +1,18 @@
 name: build
 
 on:
-  - push
-  - pull_request
+  workflow_dispatch:
+  push:
+    branches:
+      - fongmi
+  pull_request:
+    branches:
+      - fongmi
+
+env:
+  MPV_GIT_URL: https://github.com/FongMi/mpv
+  MPV_GIT_REF: fongmi
+  MPV_ANDROID_ARCHES: armv7l arm64
 
 jobs:
   linux:
@@ -37,11 +47,15 @@ jobs:
           CACHE_MODE: "folder"
           CACHE_FOLDER: "${{ github.workspace }}/gh-cache"
 
-      - name: Build
+      - name: Build native libraries
+        env:
+          MPV_ANDROID_NATIVE_ONLY: "1"
         run: |
           buildscripts/include/ci.sh build
 
       - uses: actions/upload-artifact@v7
         with:
-          name: mpv-android
-          path: app/build/outputs/apk/default/debug/app-default-armeabi-v7a-debug.apk
+          name: mpv-android-fongmi
+          path: |
+            app/src/main/libs/**
+          if-no-files-found: error
