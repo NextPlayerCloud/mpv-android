@@ -62,6 +62,13 @@ if [ ! -d fontconfig ]; then
 		tar -xz -C fontconfig --strip-components=1
 fi
 
+# libbluray
+if [ ! -d libbluray ]; then
+	mkdir libbluray
+	$WGET https://downloads.videolan.org/pub/videolan/libbluray/${v_libbluray}/libbluray-${v_libbluray}.tar.xz -O - | \
+		tar -xJ -C libbluray --strip-components=1
+fi
+
 # libass
 [ ! -d libass ] && git clone https://github.com/libass/libass
 
