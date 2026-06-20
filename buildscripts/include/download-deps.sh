@@ -69,6 +69,19 @@ if [ ! -d libbluray ]; then
 		tar -xJ -C libbluray --strip-components=1
 fi
 
+# libiconv
+if [ ! -d libiconv ]; then
+	mkdir libiconv
+	$WGET https://ftp.gnu.org/pub/gnu/libiconv/libiconv-${v_libiconv}.tar.gz -O - | \
+		tar -xz -C libiconv --strip-components=1
+fi
+
+# uchardet
+if [ ! -d uchardet ]; then
+	mkdir uchardet
+	$WGET https://gitlab.freedesktop.org/uchardet/uchardet/-/archive/v${v_uchardet}/uchardet-v${v_uchardet}.tar.gz -O - | \
+		tar -xz -C uchardet --strip-components=1
+fi
 # libass
 [ ! -d libass ] && git clone https://github.com/libass/libass
 

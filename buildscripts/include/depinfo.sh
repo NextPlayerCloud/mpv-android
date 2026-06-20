@@ -18,10 +18,14 @@ v_mbedtls=3.6.5
 v_libxml2=2.15.3
 v_fontconfig=2.18.1
 v_libbluray=1.4.1
+v_libiconv=1.19
+v_uchardet=0.0.8
 
 
 ## Dependency tree
 
+dep_libiconv=()
+dep_uchardet=(libiconv)
 dep_mbedtls=()
 dep_dav1d=()
 dep_libxml2=()
@@ -36,7 +40,7 @@ dep_lua=()
 dep_shaderc=()
 dep_libplacebo=(shaderc)
 dep_libbluray=()
-dep_mpv=(ffmpeg libass lua libplacebo libbluray)
+dep_mpv=(ffmpeg libass lua libplacebo libbluray libiconv uchardet)
 dep_mpv_android=(mpv)
 
 
@@ -44,6 +48,8 @@ dep_mpv_android=(mpv)
 
 # pinned ffmpeg revision
 v_ci_ffmpeg=n8.1.1
+# bump when the prefix build recipe changes without a dependency version change
+v_ci_prefix=3
 
 # filename used to uniquely identify a build prefix
-ci_tarball="prefix-ndk-${v_ndk}-vulkan-shaderc-lua-${v_lua}-unibreak-${v_unibreak}-harfbuzz-${v_harfbuzz}-fribidi-${v_fribidi}-freetype-${v_freetype}-libxml2-${v_libxml2}-fontconfig-${v_fontconfig}-mbedtls-${v_mbedtls}-libbluray-${v_libbluray}-ffmpeg-${v_ci_ffmpeg}.tgz"
+ci_tarball="prefix-ndk-${v_ndk}-vulkan-shaderc-lua-${v_lua}-unibreak-${v_unibreak}-harfbuzz-${v_harfbuzz}-fribidi-${v_fribidi}-freetype-${v_freetype}-libxml2-${v_libxml2}-fontconfig-${v_fontconfig}-mbedtls-${v_mbedtls}-libbluray-${v_libbluray}-libiconv-${v_libiconv}-uchardet-${v_uchardet}-ffmpeg-${v_ci_ffmpeg}-prefix-${v_ci_prefix}.tgz"
